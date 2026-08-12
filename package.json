@@ -1,0 +1,21 @@
+{
+  "name": "@papa/design",
+  "version": "0.1.0",
+  "description": "Shared design primitives for the Papa apps — tokens, and the hand-drawn icon set",
+  "license": "UNLICENSED",
+  "type": "module",
+  "files": ["src", "dist"],
+  "exports": {
+    ".": "./src/index.ts",
+    "./tokens.json": "./src/tokens/tokens.json",
+    "./tokens.css": "./dist/tokens/tokens.css",
+    "./icons": "./src/icons/core.tsx"
+  },
+  "peerDependencies": { "react": ">=18" },
+  "peerDependenciesMeta": { "react": { "optional": true } },
+  "scripts": {
+    "build": "node src/tokens/build.mjs",
+    "pretest": "npm run build",
+    "test": "node --test \"test/**/*.test.mjs\""
+  }
+}
