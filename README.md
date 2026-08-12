@@ -98,3 +98,14 @@ Papa Rentals does **not** consume this package yet — it still has its values
 inline. It is a deployed app mid-backlog with a relative-base build, so wiring
 it up is its own task. The parity tests keep the two honest in the meantime;
 treat a failure as a real signal, not noise.
+
+## Why `dist/` is committed
+
+This package is consumed as a **git dependency**, and npm runs no build step
+when installing from git. If `dist/` were ignored, every consumer would resolve
+`@papa/design/tokens.css` to a file that does not exist — which is exactly what
+happened the first time the app tried to build.
+
+So the generated CSS and TS are committed. The tradeoff is a generated artifact
+in version control; the test suite asserts `dist/` matches `tokens.json`, so a
+stale commit fails CI rather than shipping a silent mismatch.
